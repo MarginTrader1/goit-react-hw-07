@@ -1,0 +1,24 @@
+.contact {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+
+.name {
+   display: flex;
+   gap: 10px;
+}
+
+.number {
+   display: flex;
+   gap: 10px;
+}
+
+.button {
+   min-width: 100px;
+   height: 25px;
+   border-radius: 8px;
+   background-color: #3f51b51a;
+   cursor: pointer;
+   text-transform: capitalize;
+}
