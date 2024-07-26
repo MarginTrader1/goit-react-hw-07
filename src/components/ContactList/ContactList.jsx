@@ -1,29 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contactsOps";
+import { useSelector } from "react-redux";
 
 import Contact from "../Contact/Contact";
-import { selectContacts } from "../../redux/contactsSlice";
-import { selectNameFilter } from "../../redux/filtersSlice";
+import { selectFilteredContacts } from "../../redux/contactsSlice";
 
 import css from "./ContactList.module.css";
 
 const ContactList = () => {
-   const dispatch = useDispatch();
-
-   //используем хук useEffect для первой загрузки
-   useEffect(() => { 
-      dispatch(fetchContacts()); 
-   }, [dispatch]);
-
-   //получаем данные из стора
-   const contacts = useSelector(selectContacts);
-   const filter = useSelector(selectNameFilter);
-
-   //фильтруем контакты через фильтр
-   let filteredContacts = contacts.filter((item) =>
-      item.name.toLowerCase().includes(filter.toLowerCase())
-   );
+   
+   //получаем данные сложного селектора из стора
+   const filteredContacts = useSelector(selectFilteredContacts);
+   
 
    return (
       <ul className={css.list}>
