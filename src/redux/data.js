@@ -10,7 +10,9 @@ const data = [
 
 export const mainState = {
    contacts: {
-      items: data,
+      items: [],
+      loading: false,
+      error: null,
    },
    filters: {
       name: "",
