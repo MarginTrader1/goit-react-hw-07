@@ -24,6 +24,13 @@ form {
 .inputField {
    padding: 8px;
    width: 250px;
+   border: 1px solid rgb(155, 155, 155);
+   border-radius: 7px;
+}
+
+.inputField:focus {
+   border-color: blue;
+   outline: none;
 }
 
 .button {
