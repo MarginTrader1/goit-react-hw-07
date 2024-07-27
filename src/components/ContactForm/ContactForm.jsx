@@ -45,14 +45,14 @@ const ContactForm = () => {
             <div className={css.input}>
                <label htmlFor={`name-${id}`}>Name</label>
                <div className={css.inputText}>
-                  <Field type="text" name="name" id={`name-${id}`} className={css.inputField} />
+                  <Field type="text" name="name" id={`name-${id}`} className={css.inputField} placeholder="Enter name..." />
                   <ErrorMessage name="name" component="span" className={css.error} />
                </div>
             </div>
             <div className={css.input}>
                <label htmlFor={`number-${id}`}>Number</label>
                <div className={css.inputText}>
-                  <Field type="text" name="number" id={`number-${id}`} className={css.inputField} />
+                  <Field type="text" name="number" id={`number-${id}`} className={css.inputField} placeholder="Enter number..." />
                   <ErrorMessage name="number" component="span" className={css.error} />
                </div>
             </div>
