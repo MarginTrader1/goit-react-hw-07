@@ -45,7 +45,7 @@ form {
    display: inline-block;
    outline: none;
    border-radius: 8px;
-   border: 2px solid #2c0b8e;
+   border: 1px solid #2c0b8e;
    background: #2c0b8e;
 }
 .button:hover {
