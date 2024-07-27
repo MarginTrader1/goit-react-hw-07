@@ -18,7 +18,7 @@ const SearchBox = () => {
    return (
       <div className={css.input}>
          <label htmlFor={`search-${id}`}>Find contacts by name</label>
-         <input type="text" id={`search-${id}`} value={filterValue} onChange={handleChange} />
+         <input type="text" id={`search-${id}`} value={filterValue} onChange={handleChange} placeholder="Enter contacts name..." />
       </div>
    );
 };
