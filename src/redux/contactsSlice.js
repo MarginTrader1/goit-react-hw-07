@@ -5,51 +5,47 @@ import { selectNameFilter } from "./filtersSlice";
 import { mainState } from "./data";
 import { fetchContacts, addContact, deleteContact } from "./contactsOps";
 
+
+const handlePending = (state, action) => {
+   state.loading = true;
+};
+
+const handleRejected = (state, action) => {
+   state.loading = false;
+   state.error = action.payload;
+};
+
 const contactsSlice = createSlice({
    name: "contacts",
    initialState: mainState.contacts,
    extraReducers: (builder) => {
       builder
          // блок для першого запиту
-         .addCase(fetchContacts.pending, (state, action) => {
-            state.loading = true;
-         })
+         .addCase(fetchContacts.pending, handlePending)
          .addCase(fetchContacts.fulfilled, (state, action) => {
             state.loading = false;
             state.error = null;
             state.items = action.payload;
          })
-         .addCase(fetchContacts.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-         })
+         .addCase(fetchContacts.rejected, handleRejected)
+         
          // блок додавання контакту
-         .addCase(addContact.pending, (state, action) => {
-            state.loading = true;
-         })
+         .addCase(addContact.pending, handlePending)
          .addCase(addContact.fulfilled, (state, action) => {
             state.loading = false;
             state.error = null;
             state.items = [...state.items, action.payload];
          })
-         .addCase(addContact.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-         })
+         .addCase(addContact.rejected, handleRejected)
 
          // блок выдалення контакту
-         .addCase(deleteContact.pending, (state, action) => {
-            state.loading = true;
-         })
+         .addCase(deleteContact.pending, handlePending)
          .addCase(deleteContact.fulfilled, (state, action) => {
             state.loading = false;
             state.error = null;
             state.items = state.items.filter((item) => item.id !== action.payload.id);
          })
-         .addCase(deleteContact.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload;
-         });
+         .addCase(deleteContact.rejected, handleRejected);
    },
 });
 
@@ -58,6 +54,8 @@ export const contactsReducer = contactsSlice.reducer;
 
 // селекторы
 export const selectContacts = (state) => state.contacts.items;
+export const selectError = (state) => state.contacts.error;
+export const selectLoading = (state) => state.contacts.loading;
 
 // складна функция-селектор = массив зависимостей + колбэк
 export const selectFilteredContacts = createSelector(
